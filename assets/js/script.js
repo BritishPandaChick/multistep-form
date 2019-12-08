@@ -3,8 +3,14 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
+  if(animating) {
+    return false;
+    animating = true;
+  }
+
   current_fs = $(this).parent();
   next_fs = $(this).parent().next();
+
   //activate next step on progressbar using the index of next_fs
   $("#progresbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -26,6 +32,7 @@ $(".next").click(function(){
     duration: 800,
     complete: function(){
       current_fs.hide();
+      animating = false;
     },
     //this comes from the custom easing plugin
     easing: 'easeInOutBack'
@@ -33,6 +40,11 @@ $(".next").click(function(){
 });
 
 $(".previous").click(function(){
+  if(animating) {
+    return false;
+    animating = true;
+  }
+
   current_fs = $(this).parent();
   next_fs = $(this).parent().prev();
 
@@ -57,6 +69,7 @@ $(".previous").click(function(){
     duration: 800,
     complete: function(){
       current_fs.hide();
+      animating = false;
     },
     //this comes from the custom easing plugin
     easing: 'easeInOutBack'
