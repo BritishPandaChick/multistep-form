@@ -3,10 +3,8 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
-  if(animating) {
-    return false;
-    animating = true;
-  }
+  if(animating) return false;
+  animating = true;
 
   current_fs = $(this).parent();
   next_fs = $(this).parent().next();
@@ -40,13 +38,11 @@ $(".next").click(function(){
 });
 
 $(".previous").click(function(){
-  if(animating) {
-    return false;
-    animating = true;
-  }
+  if(animating) return false;
+  animating = true;
 
   current_fs = $(this).parent();
-  next_fs = $(this).parent().prev();
+  previous_fs = $(this).parent().prev();
 
   //de-activate current step on progressbar
   $("#progresbar li").eq($("fieldset").index(current_fs)).removeClass("active");
